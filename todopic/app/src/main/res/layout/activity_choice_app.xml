@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ChoiceAppActivity">
+
+    <Button
+        android:id="@+id/slackButton"
+        android:layout_width="238dp"
+        android:layout_height="65dp"
+        tools:layout_editor_absoluteX="65dp"
+        tools:layout_editor_absoluteY="126dp" />
+
+    <Button
+        android:id="@+id/trelloButton"
+        android:layout_width="238dp"
+        android:layout_height="65dp"
+        tools:layout_editor_absoluteX="65dp"
+        tools:layout_editor_absoluteY="236dp" />
+</android.support.constraint.ConstraintLayout>
