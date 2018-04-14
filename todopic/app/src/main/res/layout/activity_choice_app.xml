@@ -10,13 +10,18 @@
         android:id="@+id/slackButton"
         android:layout_width="238dp"
         android:layout_height="65dp"
+        android:background="@drawable/Slack"
+        android:elevation="10dp"
         tools:layout_editor_absoluteX="65dp"
         tools:layout_editor_absoluteY="126dp" />
 
     <Button
-        android:id="@+id/trelloButton"
+        android:id="@+id/TrelloButton"
         android:layout_width="238dp"
         android:layout_height="65dp"
+        android:background="@drawable/Trello"
+        android:elevation="10dp"
         tools:layout_editor_absoluteX="65dp"
-        tools:layout_editor_absoluteY="236dp" />
+        tools:layout_editor_absoluteY="234dp" />
+
 </android.support.constraint.ConstraintLayout>
