@@ -16,9 +16,9 @@
 
 package com.casarder.todopick;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.app.Activity;
 import android.util.Log;
 import android.view.View;
 import android.widget.CompoundButton;
@@ -53,6 +53,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         useFlash = (CompoundButton) findViewById(R.id.use_flash);
 
         findViewById(R.id.read_text).setOnClickListener(this);
+
     }
 
     /**
