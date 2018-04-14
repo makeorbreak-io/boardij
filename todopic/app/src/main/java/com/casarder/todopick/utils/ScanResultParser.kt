@@ -19,7 +19,10 @@ class ScanResultParser () {
         }
 
         fun addNewTaskChar(result: String): String {
-            return "-" + result.trim().replace("\n", "\n-")
+            if(result.trim().isNotBlank()){
+                return "-" + result.trim().replace("\n", "\n-")
+            }
+            return result
         }
     }
 }

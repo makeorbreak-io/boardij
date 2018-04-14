@@ -27,10 +27,11 @@ class TrelloChoiceBoardActivity : AppCompatActivity(){
             override fun onResponse(call: Call<List<Board>?>?, response: Response<List<Board>?>?) {
                 if(response != null && response.isSuccessful) {
                     val boards = response.body()
+
                     if(boards != null){
                         if(boards.isNotEmpty()) {
                             configureList(boards)
-                            return;
+                            return
                         }
                         emptyBody()
                     }
