@@ -4,12 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.casarder.todopick.ConfirmTextActivity">
+    tools:context="com.casarder.todopick.ConfirmTextActivity"
+    android:padding="16dp">
 
     <EditText
         android:id="@+id/result_edit_text"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:gravity="top" />
 
     <Button
         android:id="@+id/confirm_result_button"
