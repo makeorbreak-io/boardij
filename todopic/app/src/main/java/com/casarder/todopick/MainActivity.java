@@ -16,20 +16,15 @@
 
 package com.casarder.todopick;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.app.Activity;
 import android.util.Log;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
-import com.casarder.todopick.services.TrelloRetrofitInitializer;
 import com.google.android.gms.common.api.CommonStatusCodes;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 /**
  * Main activity demonstrating how to pass extra parameters to an activity that
@@ -50,23 +45,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-       /*  setContentView(R.layout.activity_main);
-
-        Call<String> call = new TrelloRetrofitInitializer().trelloService().login("lel");
-        call.enqueue(new Callback<String>() {
-            @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                if(response.body() != null) {
-                    String body = response.body();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<String> call, Throwable t) {
-
-            }
-        });
-
+       setContentView(R.layout.activity_main);
 
         statusMessage = (TextView)findViewById(R.id.status_message);
         textValue = (TextView)findViewById(R.id.text_value);
@@ -75,7 +54,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         useFlash = (CompoundButton) findViewById(R.id.use_flash);
 
         findViewById(R.id.read_text).setOnClickListener(this);
-        */
+        
     }
 
     /**
