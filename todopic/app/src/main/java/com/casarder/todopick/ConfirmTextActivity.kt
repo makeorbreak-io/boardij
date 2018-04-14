@@ -1,8 +1,8 @@
 package com.casarder.todopick
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.widget.Button
 import android.widget.EditText
 import com.casarder.todopick.utils.ScanResultParser
@@ -23,7 +23,7 @@ class ConfirmTextActivity : AppCompatActivity() {
         confirmBtn.setOnClickListener {
             val tasks = ScanResultParser.divideTasks(edit.text.toString())
 
-            val intent = Intent(this, TrelloChoiceBoardActivity::class.java)
+            val intent = Intent(applicationContext, TrelloChoiceBoardActivity::class.java)
             intent.putStringArrayListExtra("tasks", ArrayList(tasks))
             startActivity(intent)
         }

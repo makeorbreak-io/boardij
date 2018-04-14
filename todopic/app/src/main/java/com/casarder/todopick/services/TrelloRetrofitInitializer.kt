@@ -1,5 +1,6 @@
 package com.casarder.todopick.services
 
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -10,6 +11,7 @@ class TrelloRetrofitInitializer {
     private val retrofit = Retrofit.Builder()
             .baseUrl("https://api.trello.com/")
             .addConverterFactory(GsonConverterFactory.create())
+            .client(OkHttpClient.Builder().build())
             .build()
 
 

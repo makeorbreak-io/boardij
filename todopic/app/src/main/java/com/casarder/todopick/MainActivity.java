@@ -23,7 +23,6 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.util.SparseArray;
-import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
@@ -56,14 +55,17 @@ public class MainActivity extends Activity  {
 
         autoFocus = (CompoundButton) findViewById(R.id.auto_focus);
         useFlash = (CompoundButton) findViewById(R.id.use_flash);
+        dispatchTakePictureIntent();
 
     }
+
 
     /**
      * Called when a view has been clicked.
      *
      * @param v The view that was clicked.
      */
+    /*
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.read_text) {
@@ -72,16 +74,19 @@ public class MainActivity extends Activity  {
             dispatchTakePictureIntent();
 
     }
+    */
 
 
-    static final int REQUEST_IMAGE_CAPTURE = 1;
+    static final int REQUEST_IMAGE_CAPTURE = 1001;
 
     private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE_SECURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            Log.d("CameraActivity", "Camera is open");
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
 
         }
+
     }
 
     /**
@@ -141,6 +146,7 @@ public class MainActivity extends Activity  {
                 textResult.setText(strBuilder.toString());
             }
             }
+            Log.d("CameraActivity", "Camera captured");
         Intent intent = new Intent(this,ConfirmTextActivity.class);
         intent.putExtra("result", textResult.getText().toString());
         startActivity(intent);

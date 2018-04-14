@@ -17,7 +17,7 @@ class BoardListAdapter(private var boards: List<Board>, private var act: Activit
     class ViewHolder(itemView: View)  : RecyclerView.ViewHolder(itemView) {}
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
-        val textView = LayoutInflater.from(act).inflate(R.layout.trello_buttom_board_layout, parent, false)
+        val textView = LayoutInflater.from(act).inflate(R.layout.trello_button_board_layout, parent, false)
         return ViewHolder(textView)
     }
 

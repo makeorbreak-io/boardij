@@ -2,6 +2,7 @@ package com.casarder.todopick
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.StaggeredGridLayoutManager
 import android.util.Log
 import android.widget.Toast
@@ -19,6 +20,7 @@ class TrelloChoiceBoardActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_trello_choice_board)
+        board_list_recyclerview.layoutManager = LinearLayoutManager(this)
 
         val call = TrelloRetrofitInitializer().trelloService().getBoards(getString(R.string.app_key), getString(R.string.token))
         call.enqueue(object: Callback<List<Board>?> {
@@ -41,6 +43,7 @@ class TrelloChoiceBoardActivity : AppCompatActivity(){
                 onErr()
             }
         })
+        Log.d("Trello", "BugFree")
     }
 
     private fun configureList(boards: List<Board>) {

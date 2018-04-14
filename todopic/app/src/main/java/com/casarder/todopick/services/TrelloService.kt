@@ -5,6 +5,7 @@ import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 /**
  * Created by fabiolourenco on 13/04/18.
@@ -20,15 +21,18 @@ interface TrelloService {
         "des": "Card description",
         "pos": "top",
     }
+
+    ?key={key}&token={token}
+    @Path("key")key: String, @Path("token")token: String
      */
 
-    @GET("https://api.trello.com/1/members/me/boards?key={key}&token={token}")
-    fun getBoards(@Path("key")key: String, @Path("token")token: String) : Call<List<Board>>
+    @GET("1/members/me/boards")
+    fun getBoards(@Query("key")key: String, @Query("token")token: String) : Call<List<Board>>
 
-    @POST("https://api.trello.com//1/boards/{id}/lists?key={key}&token={token}")
-    fun getListsOfBoard(@Path("id")id: String,@Path("key")key: String, @Path("token")token: String): Call<List<com.casarder.todopick.model.List>>
+    @POST("/1/boards/{id}/lists")
+    fun getListsOfBoard(@Path("id")id: String,@Query("key")key: String, @Query("token")token: String): Call<List<com.casarder.todopick.model.List>>
 
-    @POST("https://api.trello.com/1/cards?idList={idList}?key={key}&token={token}")
-    fun postCard(@Path("idList")id: String,@Path("key")key: String, @Path("token")token: String): Call<Void>
+    @POST("1/cards?idList={idList}")
+    fun postCard(@Path("idList")id: String,@Query("key")key: String, @Query("token")token: String): Call<Void>
 
 }
