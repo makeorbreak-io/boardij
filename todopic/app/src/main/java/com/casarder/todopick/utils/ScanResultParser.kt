@@ -5,8 +5,8 @@ package com.casarder.todopick.utils
  */
 class ScanResultParser () {
     companion object {
-        fun divideTasks(text: String): List<String> {
-            val text = text.trim()
+        fun divideTasks(result: String): List<String> {
+            val text = result.trim()
             val tasks: List<String>
 
             tasks = if(text[0] == '-') {
