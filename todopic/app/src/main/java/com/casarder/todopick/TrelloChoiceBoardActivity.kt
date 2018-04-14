@@ -19,9 +19,15 @@ import retrofit2.Response
 
 class TrelloChoiceBoardActivity : AppCompatActivity(), ClickListener {
 
+    var tasks: List<String>? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_trello_choice_board)
+
+        if(intent.hasExtra("tasks")){
+            tasks = intent.getStringArrayListExtra("tasks")
+        }
 
         board_list_recyclerview.layoutManager = LinearLayoutManager(this)
 
@@ -47,7 +53,6 @@ class TrelloChoiceBoardActivity : AppCompatActivity(), ClickListener {
                 onErr()
             }
         })
-        Log.d("Trello", "BugFree")
     }
 
     private fun configureList(boards: List<Board>) {
@@ -65,19 +70,33 @@ class TrelloChoiceBoardActivity : AppCompatActivity(), ClickListener {
     }
 
     override fun onSelectedList(l: com.casarder.todopick.model.List) {
-        val call = TrelloRetrofitInitializer().trelloService().postCard(l.id, "", getString(R.string.app_key), getString(R.string.token))
-        call.enqueue(object : Callback<Void> {
-            override fun onFailure(call: Call<Void>?, t: Throwable?) {
-                Toast.makeText(applicationContext, getString(R.string.something_went_wrong), Toast.LENGTH_LONG).show()
-            }
-
-            override fun onResponse(call: Call<Void>?, response: Response<Void>?) {
-                if (response != null && response.isSuccessful) {
-                    onSuccess()
+        if(tasks!=null){
+            showProgressBar()
+            for(task in tasks!!){
+                val call = TrelloRetrofitInitializer().trelloService().postCard(l.id, task, getString(R.string.app_key), getString(R.string.token))
+                val response = call.execute();
+                if(response!= null && response.isSuccessful){
+                    onErr()
                 }
+//                call.enqueue(object : Callback<Void> {
+//                    override fun onFailure(call: Call<Void>?, t: Throwable?) {
+//                        Toast.makeText(applicationContext, getString(R.string.something_went_wrong), Toast.LENGTH_LONG).show()
+//                    }
+//
+//                    override fun onResponse(call: Call<Void>?, response: Response<Void>?) {
+//                        if (response == null || !response.isSuccessful ){
+//                            onErr()
+//                        }
+//                    }
+//
+//                })
             }
+            onSuccess()
+        }
+    }
 
-        })
+    override fun onClickCreateBoard() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     private fun showListsDialog(lists: List<com.casarder.todopick.model.List>) {
@@ -91,6 +110,7 @@ class TrelloChoiceBoardActivity : AppCompatActivity(), ClickListener {
 
     private fun onSuccess() {
         Toast.makeText(applicationContext, "Card created!", Toast.LENGTH_LONG).show()
+        hideProgressBar()
         finish()
     }
 
@@ -100,5 +120,13 @@ class TrelloChoiceBoardActivity : AppCompatActivity(), ClickListener {
 
     private fun emptyBody() {
         Toast.makeText(applicationContext, getString(R.string.nothing_here), Toast.LENGTH_LONG).show()
+    }
+
+    private fun showProgressBar(){
+
+    }
+
+    private fun hideProgressBar(){
+
     }
 }

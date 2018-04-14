@@ -3,9 +3,8 @@ package com.casarder.todopick
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.widget.Button
-import android.widget.EditText
 import com.casarder.todopick.utils.ScanResultParser
+import kotlinx.android.synthetic.main.activity_confirm_text.*
 
 class ConfirmTextActivity : AppCompatActivity() {
 
@@ -13,15 +12,13 @@ class ConfirmTextActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_confirm_text)
 
-        val result:String = intent.getStringExtra("result")
+        if (intent.hasExtra("result")) {
+            val result: String = intent.getStringExtra("result")
+            result_edit_text.setText(ScanResultParser.addNewTaskChar(result))
+        }
 
-        val edit = findViewById<EditText>(R.id.result_edit_text)
-        edit.setText(ScanResultParser.addNewTaskChar(result))
-
-        val confirmBtn = findViewById<Button>(R.id.confirm_result_button)
-
-        confirmBtn.setOnClickListener {
-            val tasks = ScanResultParser.divideTasks(edit.text.toString())
+        confirm_result_button.setOnClickListener {
+            val tasks = ScanResultParser.divideTasks(result_edit_text.text.toString())
 
             val intent = Intent(applicationContext, TrelloChoiceBoardActivity::class.java)
             intent.putStringArrayListExtra("tasks", ArrayList(tasks))

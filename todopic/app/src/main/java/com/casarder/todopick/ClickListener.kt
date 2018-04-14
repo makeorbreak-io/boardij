@@ -9,4 +9,5 @@ import com.casarder.todopick.model.List
 interface ClickListener{
     fun onClickBoard(b: Board)
     fun onSelectedList(l: List)
+    fun onClickCreateBoard()
 }

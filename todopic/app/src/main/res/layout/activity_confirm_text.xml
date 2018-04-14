@@ -5,23 +5,58 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.casarder.todopick.ConfirmTextActivity"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="@color/colorPrimaryBackground">
+
+    <LinearLayout
+        android:id="@+id/explanation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/colorPrimaryLight">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_info"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="8dp"
+            android:tint="@color/colorPrimaryBackground"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top"
+            android:text="Separe your tasks with a hifen ('-') "
+            android:layout_gravity="center_vertical"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimaryBackground"
+            android:layout_marginStart="8dp"/>
+
+    </LinearLayout>
+
 
     <EditText
         android:id="@+id/result_edit_text"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="top" />
+        android:layout_below="@+id/explanation"
+        android:hint="Read tasks"
+        android:layout_above="@+id/confirm_result_button"/>
 
     <Button
         android:id="@+id/confirm_result_button"
         android:layout_width="match_parent"
-        android:layout_height="65dp"
+        android:layout_height="59dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:background="@color/colorPrimary"
         android:text="Confirm"
-        android:background="#2357ea"
-        android:textSize="22dp"
-        android:textStyle="bold"
-        android:textColor="#FFFFFF"
-        android:layout_alignParentBottom="true"/>
+        android:textColor="@color/colorPrimaryBackground"
+        android:textSize="18dp"
+        android:textStyle="bold" />
 
 </RelativeLayout>

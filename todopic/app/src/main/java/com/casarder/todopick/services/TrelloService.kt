@@ -1,5 +1,6 @@
 package com.casarder.todopick.services
 
+import android.app.ActivityManager
 import com.casarder.todopick.model.Board
 import retrofit2.Call
 import retrofit2.http.GET
@@ -23,13 +24,30 @@ interface TrelloService {
     }
      */
 
+    /**
+     * Gets all the open boards of the user
+     *
+     */
     @GET("1/members/me/boards?fields=id,name,prefs,lists&filter=open&lists=open")
     fun getBoards(@Query("key")key: String, @Query("token")token: String) : Call<List<Board>>
 
-    @POST("/1/boards/{id}/lists?filter=open")
-    fun getListsOfBoard(@Path("id")id: String,@Query("key")key: String, @Query("token")token: String): Call<List<com.casarder.todopick.model.List>>
-
+    /**
+     * Creates a new card
+     * @id - id of the list
+     * @name - card name
+     *
+     */
     @POST("1/cards")
     fun postCard(@Query("idList")id: String,@Query("name")name: String,@Query("key")key: String, @Query("token")token: String): Call<Void>
 
+    /**
+     * Creates a new board
+     * @name - Board name
+     * @desc - Board description
+     * @prefs_permissionLevel - public/private
+     *
+     */
+    @POST("1/boards/")
+    fun postBoard(@Query("name")name:String, @Query("desc") description: String,
+                  @Query("prefs_permissionLevel") perm: String, @Query("defaultLists") lists: Boolean)
 }
