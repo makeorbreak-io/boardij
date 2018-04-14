@@ -16,32 +16,27 @@
 
 package com.casarder.todopick;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.media.Image;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.app.Activity;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.View;
 import android.widget.CompoundButton;
-import android.widget.ImageView;
 import android.widget.TextView;
-import com.google.android.gms.vision.Detector;
+
 import com.google.android.gms.vision.Frame;
 import com.google.android.gms.vision.text.Text;
 import com.google.android.gms.vision.text.TextBlock;
-import com.casarder.todopick.services.TrelloRetrofitInitializer;
-
-import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.vision.text.TextRecognizer;
 
 /**
  * Main activity demonstrating how to pass extra parameters to an activity that
  * recognizes text.
  */
-public class MainActivity extends Activity implements View.OnClickListener {
+public class MainActivity extends Activity  {
 
     // Use a compound button so either checkbox or switch widgets work.
     private CompoundButton autoFocus;
@@ -54,24 +49,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-         setContentView(R.layout.activity_main);
-
-        /*Call<String> call = new TrelloRetrofitInitializer().trelloService().login("lel");
-        call.enqueue(new Callback<String>() {
-            @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                if(response.body() != null) {
-                    String body = response.body();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<String> call, Throwable t) {
-
-            }
-        });*/
-
+        setContentView(R.layout.activity_main);
 
         statusMessage = (TextView)findViewById(R.id.status_message);
         textResult = (TextView)findViewById(R.id.textResult);
@@ -79,6 +57,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         autoFocus = (CompoundButton) findViewById(R.id.auto_focus);
         useFlash = (CompoundButton) findViewById(R.id.use_flash);
 
+<<<<<<< HEAD
         findViewById(R.id.read_text).setOnClickListener(this);
 
     }
@@ -93,7 +72,18 @@ public class MainActivity extends Activity implements View.OnClickListener {
         if (v.getId() == R.id.read_text) {
             dispatchTakePictureIntent();
         }
+=======
+            // launch Ocr capture activity.
+            // Intent intent = new Intent(this, OcrCaptureActivity.class);
+            //intent.putExtra(OcrCaptureActivity.AutoFocus, autoFocus.isChecked());
+            //intent.putExtra(OcrCaptureActivity.UseFlash, useFlash.isChecked());
+            dispatchTakePictureIntent();
+            //        startActivityForResult(intent, RC_OCR_CAPTURE);
+
+
+>>>>>>> 3e927d5e312dce520aafce54926d96ef6c7bd474
     }
+
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
 
@@ -162,6 +152,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 textResult.setText(strBuilder.toString());
             }
             }
-
-        }
+        Intent intent = new Intent(this,ConfirmTextActivity.class);
+        intent.putExtra("result", textResult.getText().toString());
+        startActivity(intent);
+    }
 }
