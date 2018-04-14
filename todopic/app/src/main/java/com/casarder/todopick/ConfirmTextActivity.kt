@@ -13,7 +13,11 @@ class ConfirmTextActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_confirm_text)
 
+        val result:String = intent.getStringExtra("result")
+
         val edit = findViewById<EditText>(R.id.result_edit_text)
+        edit.setText(result)
+
         val confirmBtn = findViewById<Button>(R.id.confirm_result_button)
 
         confirmBtn.setOnClickListener {
