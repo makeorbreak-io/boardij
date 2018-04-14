@@ -16,7 +16,7 @@ class ConfirmTextActivity : AppCompatActivity() {
         val result:String = intent.getStringExtra("result")
 
         val edit = findViewById<EditText>(R.id.result_edit_text)
-        edit.setText(result)
+        edit.setText(ScanResultParser.addNewTaskChar(result))
 
         val confirmBtn = findViewById<Button>(R.id.confirm_result_button)
 

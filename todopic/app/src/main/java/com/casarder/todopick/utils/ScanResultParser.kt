@@ -17,5 +17,9 @@ class ScanResultParser () {
 
             return tasks
         }
+
+        fun addNewTaskChar(result: String): String {
+            return "-" + result.replace("\n", "\n-")
+        }
     }
 }
