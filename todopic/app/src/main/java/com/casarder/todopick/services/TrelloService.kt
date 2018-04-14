@@ -26,7 +26,7 @@ interface TrelloService {
     @Path("key")key: String, @Path("token")token: String
      */
 
-    @GET("1/members/me/boards")
+    @GET("1/members/me/boards?filter=open")
     fun getBoards(@Query("key")key: String, @Query("token")token: String) : Call<List<Board>>
 
     @POST("/1/boards/{id}/lists")
