@@ -34,12 +34,7 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_fullscreen"
             android:theme="@style/FullscreenTheme" />
-        <activity android:name=".ChoiceAppActivity" />
-        <activity
-            android:name=".LoginActivity"
-            android:label="@string/title_activity_login" />
         <activity android:name=".TrelloChoiceBoardActivity" />
-        <activity android:name=".SlackChoiceGroupActivity" />
         <activity android:name=".CheckActivity" />
         <activity android:name=".ConfirmTextActivity"></activity>
     </application>
