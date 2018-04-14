@@ -18,14 +18,23 @@ package com.casarder.todopick;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.media.Image;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
+import android.util.SparseArray;
 import android.view.View;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.TextView;
-
+import com.google.android.gms.vision.Detector;
+import com.google.android.gms.vision.Frame;
+import com.google.android.gms.vision.text.Text;
+import com.google.android.gms.vision.text.TextBlock;
 import com.casarder.todopick.services.TrelloRetrofitInitializer;
 import com.google.android.gms.common.api.CommonStatusCodes;
+import com.google.android.gms.vision.text.TextRecognizer;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -41,8 +50,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private CompoundButton autoFocus;
     private CompoundButton useFlash;
     private TextView statusMessage;
-    private TextView textValue;
-
+    private TextView textResult;
     private static final int RC_OCR_CAPTURE = 9003;
     private static final String TAG = "MainActivity";
 
@@ -50,9 +58,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-       /*  setContentView(R.layout.activity_main);
+         setContentView(R.layout.activity_main);
 
-        Call<String> call = new TrelloRetrofitInitializer().trelloService().login("lel");
+        /*Call<String> call = new TrelloRetrofitInitializer().trelloService().login("lel");
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
@@ -65,17 +73,17 @@ public class MainActivity extends Activity implements View.OnClickListener {
             public void onFailure(Call<String> call, Throwable t) {
 
             }
-        });
+        });*/
 
 
         statusMessage = (TextView)findViewById(R.id.status_message);
-        textValue = (TextView)findViewById(R.id.text_value);
+        textResult = (TextView)findViewById(R.id.textResult);
 
         autoFocus = (CompoundButton) findViewById(R.id.auto_focus);
         useFlash = (CompoundButton) findViewById(R.id.use_flash);
 
         findViewById(R.id.read_text).setOnClickListener(this);
-        */
+
     }
 
     /**
@@ -87,11 +95,21 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         if (v.getId() == R.id.read_text) {
             // launch Ocr capture activity.
-            Intent intent = new Intent(this, OcrCaptureActivity.class);
-            intent.putExtra(OcrCaptureActivity.AutoFocus, autoFocus.isChecked());
-            intent.putExtra(OcrCaptureActivity.UseFlash, useFlash.isChecked());
+           // Intent intent = new Intent(this, OcrCaptureActivity.class);
+            //intent.putExtra(OcrCaptureActivity.AutoFocus, autoFocus.isChecked());
+            //intent.putExtra(OcrCaptureActivity.UseFlash, useFlash.isChecked());
+            dispatchTakePictureIntent();
+    //        startActivityForResult(intent, RC_OCR_CAPTURE);
+        }
+    }
 
-            startActivityForResult(intent, RC_OCR_CAPTURE);
+    static final int REQUEST_IMAGE_CAPTURE = 1;
+
+    private void dispatchTakePictureIntent() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE_SECURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+
         }
     }
 
@@ -119,24 +137,39 @@ public class MainActivity extends Activity implements View.OnClickListener {
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == RC_OCR_CAPTURE) {
-            if (resultCode == CommonStatusCodes.SUCCESS) {
-                if (data != null) {
-                    String text = data.getStringExtra(OcrCaptureActivity.TextBlockObject);
-                    statusMessage.setText(R.string.ocr_success);
-                    textValue.setText(text);
-                    Log.d(TAG, "Text read: " + text);
-                } else {
-                    statusMessage.setText(R.string.ocr_failure);
-                    Log.d(TAG, "No Text captured, intent data is null");
-                }
-            } else {
-                statusMessage.setText(String.format(getString(R.string.ocr_error),
-                        CommonStatusCodes.getStatusCodeString(resultCode)));
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            TextRecognizer txtRecognizer = new TextRecognizer.Builder(getApplicationContext()).build();
+            if (!txtRecognizer.isOperational())
+            {
+                // Shows if your Google Play services is not up to date or OCR is not supported for the device
+                textResult.setText("Detector dependencies are not yet available");
             }
+            else
+            {
+                // Set the bitmap taken to the frame to perform OCR Operations.
+                Frame frame = new Frame.Builder().setBitmap(imageBitmap).build();
+                SparseArray items = txtRecognizer.detect(frame);
+                StringBuilder strBuilder = new StringBuilder();
+                for (int i = 0; i < items.size(); i++)
+                {
+                    TextBlock item = (TextBlock)items.valueAt(i);
+                    strBuilder.append(item.getValue());
+                    strBuilder.append("\n");
+                    // The following Process is used to show how to use lines & elements as well
+                        for (Text line : item.getComponents()) {
+                            //extract scanned text lines here
+                            Log.v("lines", line.getValue());
+                            for (Text element : line.getComponents()) {
+                                //extract scanned text words here
+                                Log.v("element", element.getValue());
+                            }
+                        }
+                    }
+                textResult.setText(strBuilder.toString());
+            }
+            }
+
         }
-        else {
-            super.onActivityResult(requestCode, resultCode, data);
-        }
-    }
 }

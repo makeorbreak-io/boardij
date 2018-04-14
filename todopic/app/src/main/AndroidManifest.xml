@@ -5,6 +5,10 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <meta-data android:name="com.google.android.gms.vision.DEPENDENCIES" android:value="ocr"/>
+
+
+    <uses-feature android:name="android.hardware.camera2.full" />
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
@@ -37,7 +41,11 @@
             android:label="@string/title_activity_login" />
         <activity android:name=".TrelloChoiceBoardActivity" />
         <activity android:name=".SlackChoiceGroupActivity" />
-        <activity android:name=".CheckActivity"></activity>
+        <activity android:name=".CheckActivity" />
+        <activity
+            android:name=".AndroidCameraApi"
+            android:label="@string/title_activity_android_camera_api"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
