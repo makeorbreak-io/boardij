@@ -10,7 +10,7 @@
         android:id="@+id/slackButton"
         android:layout_width="238dp"
         android:layout_height="65dp"
-        android:background="@drawable/Slack"
+        android:background="@drawable/slack"
         android:elevation="10dp"
         tools:layout_editor_absoluteX="65dp"
         tools:layout_editor_absoluteY="126dp" />
@@ -19,7 +19,7 @@
         android:id="@+id/TrelloButton"
         android:layout_width="238dp"
         android:layout_height="65dp"
-        android:background="@drawable/Trello"
+        android:background="@drawable/trello"
         android:elevation="10dp"
         tools:layout_editor_absoluteX="65dp"
         tools:layout_editor_absoluteY="234dp" />
