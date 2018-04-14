@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context=".ChoiceAppActivity">
 
     <LinearLayout
@@ -36,11 +37,7 @@
             android:layout_height="65dp"
             android:layout_marginTop="45dp"
             android:background="@drawable/shape_trello"
-            android:elevation="50dp"
-            android:stateListAnimator="@null"
-            android:translationZ="10dp"
-            tools:layout_editor_absoluteX="65dp"
-            tools:layout_editor_absoluteY="234dp" />
+            android:padding="20dp" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
