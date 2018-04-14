@@ -16,25 +16,20 @@
 
 package com.casarder.todopick;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.media.Image;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.app.Activity;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.View;
 import android.widget.CompoundButton;
-import android.widget.ImageView;
 import android.widget.TextView;
-import com.google.android.gms.vision.Detector;
+
 import com.google.android.gms.vision.Frame;
 import com.google.android.gms.vision.text.Text;
 import com.google.android.gms.vision.text.TextBlock;
-import com.casarder.todopick.services.TrelloRetrofitInitializer;
-
-import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.vision.text.TextRecognizer;
 
 /**
@@ -54,24 +49,7 @@ public class MainActivity extends Activity  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-         setContentView(R.layout.activity_main);
-
-        /*Call<String> call = new TrelloRetrofitInitializer().trelloService().login("lel");
-        call.enqueue(new Callback<String>() {
-            @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                if(response.body() != null) {
-                    String body = response.body();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<String> call, Throwable t) {
-
-            }
-        });*/
-
+        setContentView(R.layout.activity_main);
 
         statusMessage = (TextView)findViewById(R.id.status_message);
         textResult = (TextView)findViewById(R.id.textResult);
