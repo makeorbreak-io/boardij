@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/board"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/board_layout"
     android:layout_width="match_parent"
     android:layout_height="80dp"
+    android:background="#2357ea"
+    android:clickable="true"
     android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:background="#2357ea"
-    android:padding="2dp"
-    android:clickable="true">
+    android:padding="2dp">
 
     <TextView
         android:id="@+id/nameBoard"
@@ -17,19 +15,19 @@
         android:layout_height="wrap_content"
         android:paddingLeft="20dp"
         android:text="Board: "
+        android:textColor="#FFFFFF"
         android:textSize="22dp"
-        android:textStyle="bold"
-        android:textColor="#FFFFFF"/>
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/descriptionBoard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/nameBoard"
+        android:layout_marginTop="2dp"
         android:paddingLeft="20dp"
         android:text="description:"
-        android:textSize="15dp"
-        android:layout_marginTop="2dp"
-        android:layout_below="@id/nameBoard"
-        android:textColor="#FFFFFF"/>
+        android:textColor="#FFFFFF"
+        android:textSize="15dp" />
 
 </RelativeLayout>

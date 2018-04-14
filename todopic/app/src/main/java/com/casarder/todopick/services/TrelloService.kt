@@ -21,18 +21,15 @@ interface TrelloService {
         "des": "Card description",
         "pos": "top",
     }
-
-    ?key={key}&token={token}
-    @Path("key")key: String, @Path("token")token: String
      */
 
-    @GET("1/members/me/boards?filter=open")
+    @GET("1/members/me/boards?fields=id,name,prefs,lists&filter=open&lists=open")
     fun getBoards(@Query("key")key: String, @Query("token")token: String) : Call<List<Board>>
 
-    @POST("/1/boards/{id}/lists")
+    @POST("/1/boards/{id}/lists?filter=open")
     fun getListsOfBoard(@Path("id")id: String,@Query("key")key: String, @Query("token")token: String): Call<List<com.casarder.todopick.model.List>>
 
-    @POST("1/cards?idList={idList}")
-    fun postCard(@Path("idList")id: String,@Query("key")key: String, @Query("token")token: String): Call<Void>
+    @POST("1/cards")
+    fun postCard(@Query("idList")id: String,@Query("name")name: String,@Query("key")key: String, @Query("token")token: String): Call<Void>
 
 }

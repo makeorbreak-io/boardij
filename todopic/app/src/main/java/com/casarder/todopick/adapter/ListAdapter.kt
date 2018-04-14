@@ -13,15 +13,14 @@ import kotlinx.android.synthetic.main.single_list_dialog.view.*
 /**
  * Created by fabiolourenco on 14/04/18.
  */
-class ListAdapter(var lists: List<com.casarder.todopick.model.List>, var act: Activity): RecyclerView.Adapter<ListAdapter.ViewHolder>(){
+class ListAdapter(var lists: List<com.casarder.todopick.model.List>, val act :TrelloChoiceBoardActivity): RecyclerView.Adapter<ListAdapter.ViewHolder>(){
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
         if (holder != null) {
             val l = lists[position]
 
             holder.nameTxt.text = l.name
             holder.itemView.setOnClickListener {
-                val a = act as TrelloChoiceBoardActivity
-                a.onSelectedList(l)
+                act.onSelectedList(l)
             }
         }
     }
@@ -31,7 +30,7 @@ class ListAdapter(var lists: List<com.casarder.todopick.model.List>, var act: Ac
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
-        val v = LayoutInflater.from(act.applicationContext).inflate(R.layout.single_list_dialog, parent, false)
+        val v = LayoutInflater.from(act).inflate(R.layout.single_list_dialog, parent, false)
         return ViewHolder(v)
     }
 
