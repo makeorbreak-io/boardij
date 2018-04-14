@@ -54,7 +54,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         useFlash = (CompoundButton) findViewById(R.id.use_flash);
 
         findViewById(R.id.read_text).setOnClickListener(this);
-        
+
     }
 
     /**
