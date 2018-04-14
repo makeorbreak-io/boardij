@@ -91,12 +91,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.read_text) {
-            // launch Ocr capture activity.
-           // Intent intent = new Intent(this, OcrCaptureActivity.class);
-            //intent.putExtra(OcrCaptureActivity.AutoFocus, autoFocus.isChecked());
-            //intent.putExtra(OcrCaptureActivity.UseFlash, useFlash.isChecked());
             dispatchTakePictureIntent();
-    //        startActivityForResult(intent, RC_OCR_CAPTURE);
         }
     }
 
