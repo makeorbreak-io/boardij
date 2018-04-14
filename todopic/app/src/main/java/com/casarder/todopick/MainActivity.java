@@ -36,7 +36,7 @@ import com.google.android.gms.vision.text.TextRecognizer;
  * Main activity demonstrating how to pass extra parameters to an activity that
  * recognizes text.
  */
-public class MainActivity extends Activity implements View.OnClickListener {
+public class MainActivity extends Activity  {
 
     // Use a compound button so either checkbox or switch widgets work.
     private CompoundButton autoFocus;
@@ -57,8 +57,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
         autoFocus = (CompoundButton) findViewById(R.id.auto_focus);
         useFlash = (CompoundButton) findViewById(R.id.use_flash);
 
-        findViewById(R.id.read_text).setOnClickListener(this);
-
     }
 
     /**
@@ -69,14 +67,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.read_text) {
-            // launch Ocr capture activity.
-           // Intent intent = new Intent(this, OcrCaptureActivity.class);
-            //intent.putExtra(OcrCaptureActivity.AutoFocus, autoFocus.isChecked());
-            //intent.putExtra(OcrCaptureActivity.UseFlash, useFlash.isChecked());
             dispatchTakePictureIntent();
-    //        startActivityForResult(intent, RC_OCR_CAPTURE);
         }
+            dispatchTakePictureIntent();
+
     }
+
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
 
@@ -145,6 +141,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 textResult.setText(strBuilder.toString());
             }
             }
-
-        }
+        Intent intent = new Intent(this,ConfirmTextActivity.class);
+        intent.putExtra("result", textResult.getText().toString());
+        startActivity(intent);
+    }
 }

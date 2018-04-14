@@ -7,7 +7,7 @@
     android:layout_height="80dp"
     android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:background="#0066cc"
+    android:background="#2357ea"
     android:padding="2dp"
     android:clickable="true">
 

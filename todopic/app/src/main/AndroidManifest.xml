@@ -29,7 +29,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".OcrCaptureActivity" />
         <activity
             android:name=".FullscreenActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -42,10 +41,6 @@
         <activity android:name=".TrelloChoiceBoardActivity" />
         <activity android:name=".SlackChoiceGroupActivity" />
         <activity android:name=".CheckActivity" />
-        <activity
-            android:name=".AndroidCameraApi"
-            android:label="@string/title_activity_android_camera_api"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".ConfirmTextActivity"></activity>
     </application>
 

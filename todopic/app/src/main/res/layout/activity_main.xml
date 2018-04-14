@@ -35,7 +35,8 @@
         android:text="@string/read_text"
         android:id="@+id/read_text"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        />
 
     <CheckBox
         android:layout_width="wrap_content"
