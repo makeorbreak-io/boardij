@@ -46,6 +46,7 @@
             android:name=".AndroidCameraApi"
             android:label="@string/title_activity_android_camera_api"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".ConfirmTextActivity"></activity>
     </application>
 
 </manifest>
