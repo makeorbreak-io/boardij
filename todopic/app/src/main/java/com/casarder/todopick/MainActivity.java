@@ -57,9 +57,6 @@ public class MainActivity extends Activity  {
         autoFocus = (CompoundButton) findViewById(R.id.auto_focus);
         useFlash = (CompoundButton) findViewById(R.id.use_flash);
 
-<<<<<<< HEAD
-        findViewById(R.id.read_text).setOnClickListener(this);
-
     }
 
     /**
@@ -72,16 +69,8 @@ public class MainActivity extends Activity  {
         if (v.getId() == R.id.read_text) {
             dispatchTakePictureIntent();
         }
-=======
-            // launch Ocr capture activity.
-            // Intent intent = new Intent(this, OcrCaptureActivity.class);
-            //intent.putExtra(OcrCaptureActivity.AutoFocus, autoFocus.isChecked());
-            //intent.putExtra(OcrCaptureActivity.UseFlash, useFlash.isChecked());
             dispatchTakePictureIntent();
-            //        startActivityForResult(intent, RC_OCR_CAPTURE);
 
-
->>>>>>> 3e927d5e312dce520aafce54926d96ef6c7bd474
     }
 
 
