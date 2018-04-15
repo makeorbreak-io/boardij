@@ -93,7 +93,7 @@ class TrelloChoiceBoardActivity : AppCompatActivity(), ClickListener {
     }
 
     override fun onClickBoard(b: Board) {
-        if (b.lists != null && b.lists.isNotEmpty()) {
+        if (b.lists.isNotEmpty()) {
             showListsDialog(b.lists)
         }
     }

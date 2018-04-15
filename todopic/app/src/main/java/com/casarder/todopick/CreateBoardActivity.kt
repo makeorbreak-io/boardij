@@ -57,6 +57,7 @@ class CreateBoardActivity : AppCompatActivity() {
                 }
 
             })
+            return
         }
         missingFieds()
     }

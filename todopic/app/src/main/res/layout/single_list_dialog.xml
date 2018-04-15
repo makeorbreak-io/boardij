@@ -12,6 +12,9 @@
         tools:text="ToDo"
         android:gravity="center"
         android:textSize="24sp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:fontFamily="@font/lato"
         />
 
 </LinearLayout>

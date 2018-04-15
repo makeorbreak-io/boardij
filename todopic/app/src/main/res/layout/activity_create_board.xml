@@ -19,6 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/name"
+            android:fontFamily="@font/lato"
             android:maxLength="16384" />
     </android.support.design.widget.TextInputLayout>
 
@@ -36,6 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/description"
+            android:fontFamily="@font/lato"
             android:maxLength="16384" />
     </android.support.design.widget.TextInputLayout>
 
@@ -50,6 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Public"
+            android:fontFamily="@font/lato"
             android:textSize="18sp"
             android:checked="true"
             />
@@ -59,6 +62,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Private"
+            android:fontFamily="@font/lato"
             android:textSize="18sp"/>
     </RadioGroup>
 
@@ -70,6 +74,7 @@
         android:layout_marginBottom="20dp"
         android:background="@color/colorPrimary"
         android:text="@string/create"
+        android:fontFamily="@font/lato"
         android:textColor="@color/colorPrimaryBackground"
         android:textSize="18sp"
         android:textStyle="bold" />
