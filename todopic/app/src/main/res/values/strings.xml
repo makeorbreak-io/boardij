@@ -34,4 +34,8 @@
     <string name="something_went_wrong">Something went wrong. Please try again!</string>
     <string name="nothing_here">Nothing to see here</string>
     <string name="title_activity_android_camera_api">AndroidCameraApi</string>
+    <string name="empty_card">You can\'t make an empty card!</string>
+    <string name="name">Name</string>
+    <string name="description">Description</string>
+    <string name="create">Create</string>
 </resources>

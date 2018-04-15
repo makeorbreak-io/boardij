@@ -3,6 +3,7 @@ package com.casarder.todopick
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.widget.Toast
 import com.casarder.todopick.utils.ScanResultParser
 import kotlinx.android.synthetic.main.activity_confirm_text.*
 
@@ -18,11 +19,16 @@ class ConfirmTextActivity : AppCompatActivity() {
         }
 
         confirm_result_button.setOnClickListener {
-            val tasks = ScanResultParser.divideTasks(result_edit_text.text.toString())
+            val editTxt = result_edit_text.text.toString()
+            if(editTxt.isNullOrEmpty() || editTxt.isBlank()){
+                Toast.makeText(this, getString(R.string.empty_card), Toast.LENGTH_LONG).show()
+            } else {
+                val tasks = ScanResultParser.divideTasks(editTxt)
 
-            val intent = Intent(applicationContext, TrelloChoiceBoardActivity::class.java)
-            intent.putStringArrayListExtra("tasks", ArrayList(tasks))
-            startActivity(intent)
+                val intent = Intent(applicationContext, TrelloChoiceBoardActivity::class.java)
+                intent.putStringArrayListExtra("tasks", ArrayList(tasks))
+                startActivity(intent)
+            }
         }
     }
 }
