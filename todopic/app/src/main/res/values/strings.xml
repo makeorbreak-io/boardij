@@ -38,4 +38,11 @@
     <string name="name">Name</string>
     <string name="description">Description</string>
     <string name="create">Create</string>
+    <string name="title_activity_crop_image">CropImage</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="saving_image">Saving image</string>
+    <string name="preparing_card">Preparing card</string>
+    <string name="no_storage_card">No storage card</string>
+    <string name="not_enough_space">Not enough space</string>
 </resources>

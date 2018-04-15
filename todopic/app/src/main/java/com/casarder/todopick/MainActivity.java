@@ -59,6 +59,16 @@ public class MainActivity extends Activity  {
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
 
     /**
      * Called when a view has been clicked.
@@ -116,39 +126,16 @@ public class MainActivity extends Activity  {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
-            TextRecognizer txtRecognizer = new TextRecognizer.Builder(getApplicationContext()).build();
-            if (!txtRecognizer.isOperational())
-            {
-                // Shows if your Google Play services is not up to date or OCR is not supported for the device
-                textResult.setText("Detector dependencies are not yet available");
+            Intent intent = new Intent(this,CropImage.class);
+            intent.putExtra("BITMAP", imageBitmap);
+            startActivity(intent);
             }
-            else
-            {
-                // Set the bitmap taken to the frame to perform OCR Operations.
-                Frame frame = new Frame.Builder().setBitmap(imageBitmap).build();
-                SparseArray items = txtRecognizer.detect(frame);
-                StringBuilder strBuilder = new StringBuilder();
-                for (int i = 0; i < items.size(); i++)
-                {
-                    TextBlock item = (TextBlock)items.valueAt(i);
-                    strBuilder.append(item.getValue());
-                    strBuilder.append("\n");
-                    // The following Process is used to show how to use lines & elements as well
-                        for (Text line : item.getComponents()) {
-                            //extract scanned text lines here
-                            Log.v("lines", line.getValue());
-                            for (Text element : line.getComponents()) {
-                                //extract scanned text words here
-                                Log.v("element", element.getValue());
-                            }
-                        }
-                    }
-                textResult.setText(strBuilder.toString());
-            }
-            }
+            else   {
+            dispatchTakePictureIntent();
+            this.onCreate(null);
+
+        }
             Log.d("CameraActivity", "Camera captured");
-        Intent intent = new Intent(this,ConfirmTextActivity.class);
-        intent.putExtra("result", textResult.getText().toString());
-        startActivity(intent);
+
     }
 }

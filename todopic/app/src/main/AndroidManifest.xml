@@ -23,10 +23,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
         <activity android:name=".TrelloChoiceBoardActivity" />
         <activity android:name=".CheckActivity" />
-        <activity android:name=".ConfirmTextActivity"></activity>
+        <activity android:name=".ConfirmTextActivity" />
+        <activity android:name=".crop.CropImage" />
+        <activity android:name=".crop.MonitoredActivity" />
+
         <activity android:name=".FullscreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,7 +37,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CreateBoardActivity"></activity>
+        <activity android:name=".CreateBoardActivity" />
+        <activity
+            android:name=".CropImage"
+            android:label="@string/title_activity_crop_image"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
