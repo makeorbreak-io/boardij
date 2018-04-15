@@ -18,6 +18,8 @@ class CreateBoardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_board)
 
+        opt = public_opt.text.toString().toLowerCase()
+
         public_opt.setOnClickListener {
             opt = public_opt.text.toString().toLowerCase()
         }
@@ -32,25 +34,31 @@ class CreateBoardActivity : AppCompatActivity() {
     }
 
     private fun createBoard(){
-        val call = TrelloRetrofitInitializer().trelloService().postBoard(input_name.text.toString(), input_desc.text.toString(),opt, true)
+        val name = input_name.text.toString()
+        val desc = input_desc.text.toString()
+        if(name.isNotEmpty() && desc.isNotEmpty()){
+            val call = TrelloRetrofitInitializer().trelloService().postBoard(name, desc,opt, true, getString(R.string.app_key),
+                    getString(R.string.token))
 
-        call.enqueue(object: Callback<Board>{
-            override fun onFailure(call: Call<Board>?, t: Throwable?) {
-                onErr()
-            }
-
-            override fun onResponse(call: Call<Board>?, response: Response<Board>?) {
-                if(response != null && response.isSuccessful){
-                    val created = response.body()
-                    if(created!= null){
-                        onSuccess(created)
-                        return;
-                    }
+            call.enqueue(object: Callback<Board>{
+                override fun onFailure(call: Call<Board>?, t: Throwable?) {
+                    onErr()
                 }
-                onErr()
-            }
 
-        })
+                override fun onResponse(call: Call<Board>?, response: Response<Board>?) {
+                    if(response != null && response.isSuccessful){
+                        val created = response.body()
+                        if(created!= null){
+                            onSuccess()
+                            return
+                        }
+                    }
+                    onErr()
+                }
+
+            })
+        }
+        missingFieds()
     }
 
     private fun onErr()
@@ -58,7 +66,11 @@ class CreateBoardActivity : AppCompatActivity() {
         Toast.makeText(this, R.string.something_went_wrong, Toast.LENGTH_LONG).show()
     }
 
-    private fun onSuccess(b: Board){
+    private fun onSuccess(){
         finish()
+    }
+
+    private fun missingFieds(){
+        Toast.makeText(this, "Please fill all the fields", Toast.LENGTH_LONG).show()
     }
 }

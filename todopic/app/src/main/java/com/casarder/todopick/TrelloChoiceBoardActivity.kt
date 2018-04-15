@@ -54,6 +54,11 @@ class TrelloChoiceBoardActivity : AppCompatActivity(), ClickListener {
                 onErr()
             }
         })
+
+
+        fab.setOnClickListener {
+            onClickCreateBoard()
+        }
     }
 
     override fun onResume() {
