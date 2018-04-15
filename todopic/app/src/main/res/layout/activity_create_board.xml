@@ -73,6 +73,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="20dp"
         android:background="@color/colorPrimary"
+        android:foreground="?attr/selectableItemBackground"
         android:text="@string/create"
         android:fontFamily="@font/lato"
         android:textColor="@color/colorPrimaryBackground"

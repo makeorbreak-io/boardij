@@ -13,6 +13,8 @@ class ConfirmTextActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_confirm_text)
 
+        title = "Tasks"
+
         if (intent.hasExtra("result")) {
             val result: String = intent.getStringExtra("result")
             result_edit_text.setText(ScanResultParser.addNewTaskChar(result))

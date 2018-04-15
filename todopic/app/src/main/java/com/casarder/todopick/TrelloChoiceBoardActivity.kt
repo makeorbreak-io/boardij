@@ -26,6 +26,9 @@ class TrelloChoiceBoardActivity : AppCompatActivity(), ClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_trello_choice_board)
 
+        title = "Trello boards"
+//        actionBar.setIcon(R.drawable.trello_logo)
+
         if(intent.hasExtra("tasks")){
             tasks = intent.getStringArrayListExtra("tasks")
         }

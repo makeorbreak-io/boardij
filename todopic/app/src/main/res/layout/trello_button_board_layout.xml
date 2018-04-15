@@ -25,7 +25,8 @@
             android:layout_height="120dp"
             android:elevation="20dp"
             android:clickable="true"
-            android:background="@color/colorPrimaryLight">
+            android:background="@color/colorPrimaryLight"
+            android:foreground="?attr/selectableItemBackground">
 
 
             <ImageView
