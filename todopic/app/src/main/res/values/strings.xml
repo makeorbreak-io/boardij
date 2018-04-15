@@ -39,6 +39,6 @@
     <string name="description">Description</string>
     <string name="create">Create</string>
     <string name="confirm">Confirm</string>
-    <string name="separe_your_tasks_with_a_hifen">Separe your tasks with a hifen (\'-\')</string>
+    <string name="separe_your_tasks_with_a_hifen">Separate your tasks with a hyphen (\'-\')</string>
     <string name="your_tasks">Your tasks</string>
 </resources>
