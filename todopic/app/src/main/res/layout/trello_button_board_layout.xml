@@ -17,13 +17,14 @@
         android:id="@+id/card_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:clickable="true">
+        android:clickable="true"
+        android:elevation="20dp">
 
         <RelativeLayout
             android:id="@+id/board"
             android:layout_width="match_parent"
             android:layout_height="120dp"
-            android:elevation="20dp"
+            android:elevation="1000dp"
             android:clickable="true"
             android:background="@color/colorPrimaryLight"
             android:foreground="?attr/selectableItemBackground">
