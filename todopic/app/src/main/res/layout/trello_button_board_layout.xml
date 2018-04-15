@@ -17,6 +17,7 @@
         android:id="@+id/card_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:clickable="true"
         android:elevation="20dp">
 
         <RelativeLayout
@@ -25,7 +26,8 @@
             android:layout_height="120dp"
             android:elevation="1000dp"
             android:clickable="true"
-            android:background="@color/colorPrimaryLight">
+            android:background="@color/colorPrimaryLight"
+            android:foreground="?attr/selectableItemBackground">
 
 
             <ImageView
@@ -44,9 +46,10 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:layout_centerInParent="true"
-                android:text="TITLE"
+                tools:text="TITLE"
                 android:textSize="21dp"
                 android:textStyle="bold"
+                android:fontFamily="@font/lato"
                 android:textColor="@color/colorPrimaryBackground"
                 android:background="#30CCCCCC"
                 android:padding="5dp"/>
@@ -57,12 +60,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@+id/nameBoard"
-                android:text="description"
-                android:textSize="15dp"
+                tools:text="description"
+                android:textSize="12sp"
                 android:layout_marginTop="2dp"
                 android:paddingHorizontal="@dimen/activity_horizontal_margin"
                 android:textColor="@color/colorPrimaryDark"
                 android:textStyle="bold"
+                android:fontFamily="@font/lato"
                 android:gravity="center_vertical"/>
 
         </RelativeLayout>

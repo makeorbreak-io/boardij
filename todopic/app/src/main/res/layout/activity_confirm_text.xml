@@ -29,7 +29,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="top"
-            android:text="Separe your tasks with a hifen ('-') "
+            android:text="@string/separe_your_tasks_with_a_hifen"
+            android:fontFamily="@font/lato"
             android:layout_gravity="center_vertical"
             android:textStyle="bold"
             android:textColor="@color/colorPrimaryBackground"
@@ -44,7 +45,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/explanation"
-        android:hint="Read tasks"
+        android:hint="@string/your_tasks"
+        android:fontFamily="@font/lato"
         android:layout_above="@+id/confirm_result_button"/>
 
     <Button
@@ -54,7 +56,8 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="20dp"
         android:background="@color/colorPrimary"
-        android:text="Confirm"
+        android:text="@string/confirm"
+        android:fontFamily="@font/lato"
         android:textColor="@color/colorPrimaryBackground"
         android:textSize="18dp"
         android:textStyle="bold" />

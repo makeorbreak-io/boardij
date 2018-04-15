@@ -18,6 +18,8 @@ class CreateBoardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_board)
 
+        title = "New Board"
+
         opt = public_opt.text.toString().toLowerCase()
 
         public_opt.setOnClickListener {
@@ -57,6 +59,7 @@ class CreateBoardActivity : AppCompatActivity() {
                 }
 
             })
+            return
         }
         missingFieds()
     }

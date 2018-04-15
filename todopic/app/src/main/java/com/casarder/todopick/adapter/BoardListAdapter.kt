@@ -1,6 +1,7 @@
 package com.casarder.todopick.adapter
 
 import android.app.Activity
+import android.content.ComponentCallbacks2
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.support.v7.widget.RecyclerView
@@ -28,6 +29,7 @@ class BoardListAdapter(private var boards: List<Board>, private var act: TrelloC
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val layout = itemView.board_background
+        val card = itemView.board
         val nameTxt = itemView.nameBoard
         val descTxt = itemView.descriptionBoard
     }
@@ -47,17 +49,20 @@ class BoardListAdapter(private var boards: List<Board>, private var act: TrelloC
             val b = boards[position]
             holder.nameTxt.text = b.name
             holder.descTxt.text = b.desc
-            holder.itemView.setOnClickListener {
+            holder.card.setOnClickListener {
                 act.onClickBoard(b)
             }
+
             if (b.prefs.backgroundImageScaled == null || b.prefs.backgroundImageScaled.isEmpty()) {
                 holder.layout.setBackgroundColor(Color.parseColor(b.prefs.backgroundColor))
             } else {
-                Glide.with(act.applicationContext).load(b.prefs.backgroundImageScaled!![BG_ITEM].url).into(holder.layout)
+                Glide.with(act.applicationContext).load(b.prefs.backgroundImageScaled[BG_ITEM].url).into(holder.layout)
             }
-
-
         }
     }
+
+    override fun onViewRecycled(holder: ViewHolder?) {
+        super.onViewRecycled(holder)
+        Glide.get(act).onTrimMemory(ComponentCallbacks2.TRIM_MEMORY_MODERATE)    }
 
 }

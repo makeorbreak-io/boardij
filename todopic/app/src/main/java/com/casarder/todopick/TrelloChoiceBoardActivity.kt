@@ -26,6 +26,9 @@ class TrelloChoiceBoardActivity : AppCompatActivity(), ClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_trello_choice_board)
 
+        title = "Trello boards"
+//        actionBar.setIcon(R.drawable.trello_logo)
+
         if(intent.hasExtra("tasks")){
             tasks = intent.getStringArrayListExtra("tasks")
         }
@@ -93,7 +96,7 @@ class TrelloChoiceBoardActivity : AppCompatActivity(), ClickListener {
     }
 
     override fun onClickBoard(b: Board) {
-        if (b.lists != null && b.lists.isNotEmpty()) {
+        if (b.lists.isNotEmpty()) {
             showListsDialog(b.lists)
         }
     }
@@ -103,7 +106,7 @@ class TrelloChoiceBoardActivity : AppCompatActivity(), ClickListener {
         if(tasks!=null){
             showProgressBar()
             for(task in tasks!!){
-                if(tasks!!.last() == task){
+                if(tasks!!.indexOf(task) == tasks!!.size-1){
                     last = true
                 }
                 if(!task.isBlank()) {

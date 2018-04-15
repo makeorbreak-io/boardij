@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <string name="app_name">SnapIt</string>
     <string name="ok">OK</string>
     <string name="permission_camera_rationale">Access to the camera is needed for detection</string>
     <string name="no_camera_permission">This application cannot run because it does not have the camera permission.  The application will now exit.</string>
@@ -45,4 +45,7 @@
     <string name="preparing_card">Preparing card</string>
     <string name="no_storage_card">No storage card</string>
     <string name="not_enough_space">Not enough space</string>
+    <string name="confirm">Confirm</string>
+    <string name="separe_your_tasks_with_a_hifen">Separate your tasks with a hyphen (\'-\')</string>
+    <string name="your_tasks">Your tasks</string>
 </resources>
