@@ -94,9 +94,13 @@ class TrelloChoiceBoardActivity : AppCompatActivity(), ClickListener {
     }
 
     override fun onSelectedList(l: com.casarder.todopick.model.List) {
+        var last = false
         if(tasks!=null){
             showProgressBar()
             for(task in tasks!!){
+                if(tasks!!.last() == task){
+                    last = true
+                }
                 if(!task.isBlank()) {
                     val call = TrelloRetrofitInitializer().trelloService().postCard(l.id, task, getString(R.string.app_key), getString(R.string.token))
                     call.enqueue(object : Callback<Void> {
@@ -107,13 +111,16 @@ class TrelloChoiceBoardActivity : AppCompatActivity(), ClickListener {
                         override fun onResponse(call: Call<Void>?, response: Response<Void>?) {
                             if (response == null || !response.isSuccessful ){
                                 onErr()
+                            }else{
+                                if(last){
+                                    onSuccess()
+                                }
                             }
                         }
 
                     })
                 }
             }
-            onSuccess()
         }
     }
 
@@ -132,7 +139,7 @@ class TrelloChoiceBoardActivity : AppCompatActivity(), ClickListener {
     }
 
     private fun onSuccess() {
-        Toast.makeText(applicationContext, "Card created!", Toast.LENGTH_LONG).show()
+        Toast.makeText(applicationContext, "Cards created!", Toast.LENGTH_LONG).show()
         hideProgressBar()
         val i = Intent(this, MainActivity::class.java)
         startActivity(i)
