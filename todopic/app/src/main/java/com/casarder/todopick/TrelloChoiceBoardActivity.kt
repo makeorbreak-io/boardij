@@ -106,7 +106,7 @@ class TrelloChoiceBoardActivity : AppCompatActivity(), ClickListener {
         if(tasks!=null){
             showProgressBar()
             for(task in tasks!!){
-                if(tasks!!.last() == task){
+                if(tasks!!.indexOf(task) == tasks!!.size-1){
                     last = true
                 }
                 if(!task.isBlank()) {
