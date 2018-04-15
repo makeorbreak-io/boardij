@@ -28,7 +28,7 @@ interface TrelloService {
      * Gets all the open boards of the user
      *
      */
-    @GET("1/members/me/boards?fields=id,name,prefs,lists&filter=open&lists=open")
+    @GET("1/members/me/boards?fields=id,name,desc,prefs,lists&filter=open&lists=open")
     fun getBoards(@Query("key")key: String, @Query("token")token: String) : Call<List<Board>>
 
     /**
@@ -49,5 +49,6 @@ interface TrelloService {
      */
     @POST("1/boards/")
     fun postBoard(@Query("name")name:String, @Query("desc") description: String,
-                  @Query("prefs_permissionLevel") perm: String, @Query("defaultLists") lists: Boolean): Call<Board>
+                  @Query("prefs_permissionLevel") perm: String, @Query("defaultLists") lists: Boolean,
+                  @Query("key")key: String, @Query("token")token: String): Call<Board>
 }

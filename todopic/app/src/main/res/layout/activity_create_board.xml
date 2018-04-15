@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.casarder.todopick.CreateBoardActivity">
+    tools:context="com.casarder.todopick.CreateBoardActivity"
+    android:background="@color/colorPrimaryBackground">
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/input_layout_name"
@@ -18,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/name"
-            android:maxLength="200" />
+            android:maxLength="16384" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -35,7 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/description"
-            android:maxLength="200" />
+            android:maxLength="16384" />
     </android.support.design.widget.TextInputLayout>
 
     <RadioGroup
@@ -50,6 +51,7 @@
             android:layout_height="wrap_content"
             android:text="Public"
             android:textSize="18sp"
+            android:checked="true"
             />
 
         <RadioButton
