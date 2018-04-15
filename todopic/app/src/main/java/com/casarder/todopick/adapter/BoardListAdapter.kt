@@ -27,7 +27,7 @@ class BoardListAdapter(private var boards: List<Board>, private var act: TrelloC
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val layout = itemView.board_layout
+        val layout = itemView.board_background
         val nameTxt = itemView.nameBoard
         val descTxt = itemView.descriptionBoard
     }
@@ -51,14 +51,9 @@ class BoardListAdapter(private var boards: List<Board>, private var act: TrelloC
                 act.onClickBoard(b)
             }
             if (b.prefs.backgroundImageScaled == null || b.prefs.backgroundImageScaled.isEmpty()) {
-                holder.itemView.setBackgroundColor(Color.parseColor(b.prefs.backgroundColor))
+                holder.layout.setBackgroundColor(Color.parseColor(b.prefs.backgroundColor))
             } else {
-                Glide.with(act.applicationContext).load(b.prefs.backgroundImageScaled!![BG_ITEM].url).into(object : SimpleTarget<Drawable>() {
-                    override fun onResourceReady(resource: Drawable?, transition: Transition<in Drawable>?) {
-                        holder.layout.background = resource
-                    }
-
-                })
+                Glide.with(act.applicationContext).load(b.prefs.backgroundImageScaled!![BG_ITEM].url).into(holder.layout)
             }
 
 
