@@ -49,5 +49,5 @@ interface TrelloService {
      */
     @POST("1/boards/")
     fun postBoard(@Query("name")name:String, @Query("desc") description: String,
-                  @Query("prefs_permissionLevel") perm: String, @Query("defaultLists") lists: Boolean)
+                  @Query("prefs_permissionLevel") perm: String, @Query("defaultLists") lists: Boolean): Call<Board>
 }

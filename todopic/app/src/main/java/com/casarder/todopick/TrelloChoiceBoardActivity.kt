@@ -1,5 +1,6 @@
 package com.casarder.todopick
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
@@ -55,11 +56,34 @@ class TrelloChoiceBoardActivity : AppCompatActivity(), ClickListener {
         })
     }
 
+    override fun onResume() {
+        super.onResume()
+        val call = TrelloRetrofitInitializer().trelloService().getBoards(getString(R.string.app_key), getString(R.string.token))
+        call.enqueue(object : Callback<List<Board>?> {
+            override fun onResponse(call: Call<List<Board>?>?, response: Response<List<Board>?>?) {
+                if (response != null && response.isSuccessful) {
+                    val boards = response.body()
+
+                    if (boards != null) {
+                        if (boards.isNotEmpty()) {
+                            configureList(boards)
+                            return
+                        }
+                        emptyBody()
+                    }
+                }
+                onErr()
+            }
+
+            override fun onFailure(call: Call<List<Board>?>?, t: Throwable?) {
+                Log.e("onFailure error", t?.message)
+                onErr()
+            }
+        })
+    }
+
     private fun configureList(boards: List<Board>) {
-        val recyclerView = board_list_recyclerview
-        recyclerView.adapter = BoardListAdapter(boards, this)
-        val layoutManager = LinearLayoutManager(this)
-        recyclerView.layoutManager = layoutManager
+        board_list_recyclerview.adapter = BoardListAdapter(boards, this)
 
     }
 
@@ -73,30 +97,29 @@ class TrelloChoiceBoardActivity : AppCompatActivity(), ClickListener {
         if(tasks!=null){
             showProgressBar()
             for(task in tasks!!){
-                val call = TrelloRetrofitInitializer().trelloService().postCard(l.id, task, getString(R.string.app_key), getString(R.string.token))
-                val response = call.execute();
-                if(response!= null && response.isSuccessful){
-                    onErr()
+                if(!task.isBlank()) {
+                    val call = TrelloRetrofitInitializer().trelloService().postCard(l.id, task, getString(R.string.app_key), getString(R.string.token))
+                    call.enqueue(object : Callback<Void> {
+                        override fun onFailure(call: Call<Void>?, t: Throwable?) {
+                            Toast.makeText(applicationContext, getString(R.string.something_went_wrong), Toast.LENGTH_LONG).show()
+                        }
+
+                        override fun onResponse(call: Call<Void>?, response: Response<Void>?) {
+                            if (response == null || !response.isSuccessful ){
+                                onErr()
+                            }
+                        }
+
+                    })
                 }
-//                call.enqueue(object : Callback<Void> {
-//                    override fun onFailure(call: Call<Void>?, t: Throwable?) {
-//                        Toast.makeText(applicationContext, getString(R.string.something_went_wrong), Toast.LENGTH_LONG).show()
-//                    }
-//
-//                    override fun onResponse(call: Call<Void>?, response: Response<Void>?) {
-//                        if (response == null || !response.isSuccessful ){
-//                            onErr()
-//                        }
-//                    }
-//
-//                })
             }
             onSuccess()
         }
     }
 
     override fun onClickCreateBoard() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val i = Intent(this, CreateBoardActivity::class.java)
+        startActivity(i)
     }
 
     private fun showListsDialog(lists: List<com.casarder.todopick.model.List>) {
@@ -111,7 +134,8 @@ class TrelloChoiceBoardActivity : AppCompatActivity(), ClickListener {
     private fun onSuccess() {
         Toast.makeText(applicationContext, "Card created!", Toast.LENGTH_LONG).show()
         hideProgressBar()
-        finish()
+        val i = Intent(this, MainActivity::class.java)
+        startActivity(i)
     }
 
     private fun onErr() {
