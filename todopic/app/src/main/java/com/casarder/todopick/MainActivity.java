@@ -22,14 +22,8 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
-import android.util.SparseArray;
 import android.widget.CompoundButton;
 import android.widget.TextView;
-
-import com.google.android.gms.vision.Frame;
-import com.google.android.gms.vision.text.Text;
-import com.google.android.gms.vision.text.TextBlock;
-import com.google.android.gms.vision.text.TextRecognizer;
 
 /**
  * Main activity demonstrating how to pass extra parameters to an activity that
@@ -131,8 +125,9 @@ public class MainActivity extends Activity  {
             startActivity(intent);
             }
             else   {
-            dispatchTakePictureIntent();
-            this.onCreate(null);
+            //dispatchTakePictureIntent();
+            //this.onCreate(null);
+            finish();
 
         }
             Log.d("CameraActivity", "Camera captured");

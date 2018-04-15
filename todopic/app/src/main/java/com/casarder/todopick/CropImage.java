@@ -3,14 +3,10 @@ package com.casarder.todopick;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.util.SparseArray;
-import android.view.View;
-import com.casarder.todopick.crop.*;
+
 import com.google.android.gms.vision.Frame;
 import com.google.android.gms.vision.text.Text;
 import com.google.android.gms.vision.text.TextBlock;
@@ -23,13 +19,15 @@ public class CropImage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crop_image);
-        runCropImage();
+       // runCropImage();
     }
 
 
     @Override
     protected void onResume() {
         super.onResume();
+        runCropImage();
+
     }
 
     private void runCropImage() {
@@ -53,9 +51,7 @@ public class CropImage extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode!= RESULT_OK){
-            Intent intent = new Intent(this, ConfirmTextActivity.class);
-            intent.putExtra("result", "");
-            startActivity(intent);
+           finish();
         }
         else {
             TextRecognizer txtRecognizer = new TextRecognizer.Builder(getApplicationContext()).build();
