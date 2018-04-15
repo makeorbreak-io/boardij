@@ -1,33 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/board_layout"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:gravity="center_vertical"
-    android:orientation="horizontal"
-    android:background="@color/colorPrimary"
-    android:padding="2dp"
-    android:clickable="true">
+    android:orientation="vertical"
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    android:background="@color/colorPrimaryBackground"
+    tools:context=".TrelloChoiceBoardActivity">
 
-    <TextView
-        android:id="@+id/nameBoard"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="20dp"
-        android:text="Board: "
-        android:textSize="22dp"
-        android:textStyle="bold"
-        android:textColor="@color/colorPrimaryBackground"/>
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/descriptionBoard"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="20dp"
-        android:text="description:"
-        android:textSize="15dp"
-        android:layout_marginTop="2dp"
-        android:layout_below="@id/nameBoard"
-        android:textColor="@color/colorPrimaryBackground"/>
+        <RelativeLayout
+            android:id="@+id/board"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:elevation="20dp"
+            android:clickable="true"
+            android:background="@color/colorPrimaryLight">
 
-</RelativeLayout>
+
+            <ImageView
+                android:id="@+id/board_background"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimaryDark"
+                android:layout_alignParentTop="true"
+                android:layout_marginBottom="45dp"
+                android:layout_centerInParent="true"
+                android:scaleType="centerCrop"
+                />
+
+            <TextView
+                android:id="@+id/nameBoard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_centerInParent="true"
+                android:text="TITLE"
+                android:textSize="21dp"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimaryBackground"
+                android:background="#30CCCCCC"
+                android:padding="5dp"/>
+
+
+            <TextView
+                android:id="@+id/descriptionBoard"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/nameBoard"
+                android:text="description"
+                android:textSize="15dp"
+                android:layout_marginTop="2dp"
+                android:paddingHorizontal="@dimen/activity_horizontal_margin"
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold"
+                android:gravity="center_vertical"/>
+
+        </RelativeLayout>
+
+        
+    </android.support.v7.widget.CardView>
+
+
+
+</LinearLayout>
